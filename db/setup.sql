@@ -1,0 +1,25 @@
+DROP DATABASE IF EXISTS myDatabase;
+
+CREATE DATABASE myDatabase;
+
+USE myDatabase;
+
+DROP TABLE IF EXISTS rooms;
+
+CREATE TABLE rooms (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  roomName VARCHAR(255),
+  roomSqft INT
+);
+
+DROP TABLE IF EXISTS items;
+
+CREATE TABLE items (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  itemName VARCHAR(255),
+  itemWidth INT,
+  itemHeight INT,
+  itemSqft INT,
+  roomId INT,
+  FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
