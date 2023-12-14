@@ -66,7 +66,8 @@ export default class RoomRepository {
 
     const values = [
       room.getRoomName(),
-      room.getRoomSqft()
+      room.getRoomSqft(),
+      room.getId()
     ];
 
     await dbConnection.execute(sql, values);
