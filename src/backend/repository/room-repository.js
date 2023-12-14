@@ -14,7 +14,7 @@ export default class RoomRepository {
 
     const roomData = results[0];
 
-    const rooms = roomMapper.fromObjectCollection(roomData);
+    const rooms = RoomMapper.fromObjectCollection(roomData);
 
     return rooms;
   }
@@ -41,17 +41,13 @@ export default class RoomRepository {
     const dbConnection = await DbConnection.getConnection();
 
     const sql = `
-      INSERT INTO rooms (roomName, roomSqft, objectName, objectWidth, objectHeight, objectSqft)
-      VALUES (?, ?, ?, ?, ?, ?)
+      INSERT INTO rooms (roomName, roomSqft)
+      VALUES (?, ?)
     `;
 
     const values = [
       room.getRoomName(),
-      room.getRoomSqft(),
-      room.getObjectName(),
-      room.getObjectWidth(),
-      room.getObjectHeight(),
-      room.getObjectWidth()
+      room.getRoomSqft()
     ];
 
     await dbConnection.execute(sql, values);
@@ -64,21 +60,13 @@ export default class RoomRepository {
     const sql = `
       UPDATE rooms
       SET roomName = ?,
-          roomSqft = ?,
-          objectName = ?,
-          objectWidth = ?,
-          objectHeight = ?,
-          objectSqft = ?
+          roomSqft = ?
       WHERE id = ?
     `;
 
     const values = [
       room.getRoomName(),
-      room.getRoomSqft(),
-      room.getObjectName(),
-      room.getObjectHeight(),
-      room.getObjectWidth(),
-      room.getObjectSqft()
+      room.getRoomSqft()
     ];
 
     await dbConnection.execute(sql, values);

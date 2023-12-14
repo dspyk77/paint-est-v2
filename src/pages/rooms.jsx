@@ -4,37 +4,37 @@ import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
 
 function Page() {
-  const [users, setUsers] = useState([]);
+  const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await fetch('/api/users', {
+    const fetchRooms = async () => {
+      const response = await fetch('/api/rooms', {
         method: 'GET'
       });
 
       if (response.ok) {
-        const users = await response.json();
-        console.log(`Users: ${JSON.stringify(users)}`);
-        setUsers(users);
+        const rooms = await response.json();
+        console.log(`Rooms: ${JSON.stringify(rooms)}`);
+        setRooms(rooms);
       } else {
         console.error(response);
       }
     };
 
-    fetchUsers();
+    fetchRooms();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDeleteRoom = async (id) => {
     const confirmation = window.confirm('Are you sure you want to delete this?');
 
     if (confirmation) {
-      const response = await fetch(`/api/users/${id}`, {
+      const response = await fetch(`/api/rooms/${id}`, {
         method: 'DELETE'
       });
 
       if (response.ok) {
-        setUsers((prevUsers) =>
-          prevUsers.filter((user) => user.id !== id)
+        setRooms((prevRooms) =>
+          prevRooms.filter((room) => room.id !== id)
         );
       } else {
         console.error(response);
@@ -43,22 +43,20 @@ function Page() {
   };
 
   const rows = [];
-  for (let user of users) {
-    const key = `${user.id}`;
+  for (let room of rooms) {
+    const key = `${room.id}`;
 
     const row = (
       <tr key={key}>
-        <td>{user.id}</td>
-        <td>{user.firstName}</td>
-        <td>{user.lastName}</td>
-        <td>{user.age}</td>
-        <td>{user.weight}</td>
+        <td>{room.id}</td>
+        <td>{room.roomName}</td>
+        <td>{room.roomSqft}</td>
         <td>
-          <Link href={`/users/${user.id}`}>Show</Link>
+          <Link href={`/rooms/${room.id}`}>Show</Link>
           <span> | </span>
-          <Link href={`/users/${user.id}/edit`}>Edit</Link>
+          <Link href={`/rooms/${room.id}/edit`}>Edit</Link>
           <span> | </span>
-          <Link href="" onClick={() => handleDelete(user.id)}>Delete</Link>
+          <Link href="" onClick={() => handleDeleteRoom(room.id)}>Delete</Link>
         </td>
       </tr>
     );
@@ -68,18 +66,16 @@ function Page() {
 
   return (
     <>
-      <h1 className="my-4 text-2xl">Users</h1>
+      <h1 className="my-4 text-2xl">Rooms</h1>
 
-      <Button variant="primary" href="/users/new">Create</Button>
+      <Button variant="primary" href="/rooms/new">Create</Button>
 
       <Table responsive="md" variant='dark' striped hover className="mt-3">
         <thead>
           <tr>
             <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Age</th>
-            <th>Weight</th>
+            <th>Room Name</th>
+            <th>Room Sqft</th>
             <th></th>
           </tr>
         </thead>
