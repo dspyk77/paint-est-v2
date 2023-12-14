@@ -32,7 +32,7 @@ function Page() {
   }, [id]);
 
   const handleDelete = async () => {
-    const confirmation = window.confirm('Are you sure you sure ?');
+    const confirmation = window.confirm('Are you sure you want to delete?');
 
     if (confirmation) {
       const response = await fetch(`/api/rooms/${id}`, {
