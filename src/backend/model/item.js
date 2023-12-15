@@ -7,7 +7,7 @@ export default class Item {
   #itemSqft;
   #roomId;
 
-  constructor(id, itemName, itemWidth, itemHeight, itemSqft) {
+  constructor(id, itemName, itemWidth, itemHeight, itemSqft, roomId) {
     this.#id = id;
     this.#itemName = itemName;
     this.#itemHeight = itemHeight;
@@ -41,7 +41,7 @@ export default class Item {
   }
 
   setId(id) {
-    return this.#id;
+    this.#id = id;
   }
 
   setItemName() {

@@ -43,7 +43,7 @@ function Page() {
 
     if (response.ok) {
       const createdRoom = await response.json();
-      console.log(`Updated user: ${JSON.stringify(createdRoom)}`);
+      console.log(`Updated room: ${JSON.stringify(createdRoom)}`);
 
       router.push(`/rooms/${id}`);
     } else {

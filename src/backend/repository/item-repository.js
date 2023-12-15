@@ -1,5 +1,5 @@
 import DbConnection from '@/backend/config/db-connection';
-import ItemMapper from '@/backend/mapper/item-maper';
+import ItemMapper from '@/backend/mapper/item-mapper';
 
 export default class ItemRepository {
 
@@ -56,7 +56,7 @@ export default class ItemRepository {
   }
 
   static async update(item) {
-    console.log(`[RoomRepository#update] ${item}`);
+    console.log(`[ItemRepository#update] ${item}`);
     const dbConnection = await DbConnection.getConnection();
 
     const sql = `
@@ -64,7 +64,8 @@ export default class ItemRepository {
       SET itemName = ?,
           itemWidth = ?,
           itemHeight = ?,
-          itemSqft = ?
+          itemSqft = ?,
+          roomId= ?
       WHERE id = ?
     `;
 
@@ -72,7 +73,9 @@ export default class ItemRepository {
       item.getItemName(),
       item.getItemWidth(),
       item.getItemHeight(),
-      item.getItemSqft()
+      item.getItemSqft(),
+      item.getRoomId(),
+      item.getId()
     ];
 
     await dbConnection.execute(sql, values);

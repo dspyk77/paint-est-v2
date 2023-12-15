@@ -25,11 +25,11 @@ export default class ItemMapper {
   static toObject(item) {
     const object = {
       id: item.getId(),
-      itemName: item.getitemName(),
+      itemName: item.getItemName(),
       itemWidth: item.getItemWidth(),
       itemHeight: item.getItemHeight(),
       itemSqft: item.getItemSqft(),
-      itemSqft: item.getitemSqft()
+      roomId: item.getRoomId()
     };
 
     return object;

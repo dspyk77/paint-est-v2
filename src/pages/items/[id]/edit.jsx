@@ -6,7 +6,7 @@ function Page() {
   const [itemName, setItemName] = useState('');
   const [itemWidth, setItemWidth] = useState('');
   const [itemHeight, setItemHeight] = useState('');
-  const [roomId, setRoomId] = useState(roomId);
+  const [roomId, setRoomId] = useState();
   const [itemSqft, setItemSqft] = useState(0);
 
   const router = useRouter();
@@ -53,7 +53,7 @@ function Page() {
 
     if (response.ok) {
       const createdItem = await response.json();
-      console.log(`Updated user: ${JSON.stringify(createdItem)}`);
+      console.log(`Updated item: ${JSON.stringify(createdItem)}`);
 
       router.push(`/items/${id}`);
     } else {

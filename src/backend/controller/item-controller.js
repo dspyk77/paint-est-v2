@@ -1,5 +1,5 @@
 import ItemRepository from '@/backend/repository/item-repository';
-import ItemMapper from '@/backend/mapper/item-maper';
+import ItemMapper from '@/backend/mapper/item-mapper';
 
 export default class ItemController {
 
@@ -28,7 +28,7 @@ export default class ItemController {
     const data = req.body;
     console.log(`[ItemController#create] ${JSON.stringify(data)}`);
 
-    const item = RoomMapper.fromObject(data);
+    const item = ItemMapper.fromObject(data);
 
     await ItemRepository.create(item);
 
@@ -43,7 +43,12 @@ export default class ItemController {
     console.log(`[ItemController#update] ${id}, ${JSON.stringify(data)}`);
 
     const item = ItemMapper.fromObject(data);
+
+    console.log(item.toString());
+
     item.setId(id);
+
+    console.log(item.toString());
 
     await ItemRepository.update(item);
 

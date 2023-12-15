@@ -28,7 +28,7 @@ function Page() {
 
     if (response.ok) {
       const createdItem = await response.json();
-      console.log(`Created room: ${JSON.stringify(createdItem)}`);
+      console.log(`Created item: ${JSON.stringify(createdItem)}`);
 
       router.push('/items');
     } else {
