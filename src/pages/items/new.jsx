@@ -6,7 +6,7 @@ function Page() {
   const [itemName, setItemName] = useState('');
   const [itemWidth, setItemWidth] = useState('');
   const [itemHeight, setItemHeight] = useState('');
-  const [roomId, setRoomId] = useState(0);
+  const [roomId, setRoomId] = useState(null);
   const [itemSqft, setItemSqft] = useState(0);
 
   const router = useRouter();
@@ -68,8 +68,12 @@ function Page() {
         />
       </Form.Group>
 
+      <Button className="mt-3 me-2" variant="primary" type="button" onClick={sendCreateItemRequest}>
+        Add Sqft
+      </Button>
+
       <Button className="mt-3" variant="primary" type="button" onClick={sendCreateItemRequest}>
-        Submit
+        Subtract Sqft
       </Button>
     </Form>
   );

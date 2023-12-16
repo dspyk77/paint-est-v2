@@ -19,6 +19,23 @@ export default class ItemRepository {
     return items;
   }
 
+  static async findAllByRoomId(roomId) {
+    console.log('[ItemRepository#findAllByRoomId]');
+    const dbConnection = await DbConnection.getConnection();
+
+    const results = await dbConnection.execute(`
+      SELECT *
+      FROM items
+      WHERE roomId = ?
+    `, [roomId]);
+
+    const itemData = results[0];
+
+    const items = ItemMapper.fromObjectCollection(itemData);
+
+    return items;
+  }
+
   static async findById(id) {
     console.log(`[ItemRepository#findById] ${id}`);
     const dbConnection = await DbConnection.getConnection();

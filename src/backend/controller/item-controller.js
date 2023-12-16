@@ -24,6 +24,17 @@ export default class ItemController {
     res.status(200).json(response);
   }
 
+  static async showAllInRoom(req, res) {
+    const { roomId } = req.query;
+    console.log(`[ItemController#showAllInRoom] ${roomId}`);
+
+    const item = await ItemRepository.findAllByRoomId(roomId);
+
+    const response = ItemMapper.toObjectCollection(item);
+    console.log(`Response: ${JSON.stringify(response)}`);
+    res.status(200).json(response);
+  }
+
   static async create(req, res) {
     const data = req.body;
     console.log(`[ItemController#create] ${JSON.stringify(data)}`);
@@ -44,11 +55,7 @@ export default class ItemController {
 
     const item = ItemMapper.fromObject(data);
 
-    console.log(item.toString());
-
     item.setId(id);
-
-    console.log(item.toString());
 
     await ItemRepository.update(item);
 
