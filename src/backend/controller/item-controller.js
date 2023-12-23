@@ -25,10 +25,10 @@ export default class ItemController {
   }
 
   static async showAllInRoom(req, res) {
-    const { roomId } = req.query;
-    console.log(`[ItemController#showAllInRoom] ${roomId}`);
+    const { id } = req.query;
+    console.log(`[ItemController#showAllInRoom] ${id}`);
 
-    const item = await ItemRepository.findAllByRoomId(roomId);
+    const item = await ItemRepository.findAllByRoomId(id);
 
     const response = ItemMapper.toObjectCollection(item);
     console.log(`Response: ${JSON.stringify(response)}`);
