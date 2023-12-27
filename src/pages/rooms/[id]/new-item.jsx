@@ -6,34 +6,34 @@ function Page() {
   const [itemName, setItemName] = useState('');
   const [itemWidth, setItemWidth] = useState('');
   const [itemHeight, setItemHeight] = useState('');
-  const [roomId, setRoomId] = useState(null);
+  const [roomId, setRoomId] = useState('');
   const [itemSqft, setItemSqft] = useState(0);
   const [room, setRoom] = useState({});
 
   const router = useRouter();
+  const { id } = router.query;
 
   useEffect(() => {
-    // Fetch room data when the component mounts or when roomId changes
-    const fetchRoomData = async () => {
-      const { roomId } = router.query;
-      if (roomId) {
-        try {
-          const response = await fetch(`/api/rooms/${roomId}`);
-          if (response.ok) {
-            const roomData = await response.json();
-            setRoom(roomData); // Set the entire room object
-            setRoomId(roomData.id); // Set roomId separately if needed
-          } else {
-            console.error(response);
-          }
-        } catch (error) {
-          console.error(error);
-        }
+    const fetchRoom = async () => {
+      const response = await fetch(`/api/rooms/${id}`, {
+        method: 'GET',
+      });
+
+      console.log(response);
+
+      if (response.ok) {
+        // console.log(await response.text());
+        const roomData = await response.json();
+
+        setRoom(roomData);
+      } else {
+        console.error(response);
       }
     };
 
-    fetchRoomData();
-  }, [router.query]);
+    fetchRoom();
+    setRoomId(id);
+  }, [id]);
 
   const sendCreateItemRequest = async () => {
 
@@ -45,7 +45,7 @@ function Page() {
       roomId: roomId
     };
 
-    const response = await fetch(`/api/roooms/${room.id}/items`, {
+    const response = await fetch(`/api/items?roomId=${room.id}`, { //`/api/rooms/${room.id}/items`
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newItem)
@@ -55,7 +55,7 @@ function Page() {
       const createdItem = await response.json();
       console.log(`Created item: ${JSON.stringify(createdItem)}`);
 
-      router.push('/items');
+      router.push(`/rooms/${id}/items`);
     } else {
       console.error(response);
     }

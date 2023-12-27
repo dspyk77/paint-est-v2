@@ -3,14 +3,26 @@ import ItemMapper from '@/backend/mapper/item-mapper';
 
 export default class ItemRepository {
 
-  static async findAll() {
-    console.log('[ItemRepository#findAll]');
+  static async findAll(roomId) {
+    console.log(`[ItemRepository#findAll] ${roomId}`);
     const dbConnection = await DbConnection.getConnection();
 
-    const results = await dbConnection.execute(`
+    // if (roomId == undefined) roomId = 1;
+
+    let results;
+
+    if (!roomId) {
+      results = await dbConnection.execute(`
       SELECT *
       FROM items
     `);
+    } else {
+      results = await dbConnection.execute(`
+      SELECT *
+      FROM items
+      WHERE roomId = ?
+    `, [roomId]);
+    }
 
     const itemData = results[0];
 
@@ -58,15 +70,16 @@ export default class ItemRepository {
     const dbConnection = await DbConnection.getConnection();
 
     const sql = `
-      INSERT INTO items (itemName, itemWidth, itemHeight, itemSqft)
-      VALUES (?, ?, ?, ?)
+      INSERT INTO items (itemName, itemWidth, itemHeight, itemSqft, roomId)
+      VALUES (?, ?, ?, ?, ?)
     `;
 
     const values = [
       item.getItemName(),
       item.getItemWidth(),
       item.getItemHeight(),
-      item.getItemSqft()
+      item.getItemSqft(),
+      item.getRoomId()
     ];
 
     await dbConnection.execute(sql, values);

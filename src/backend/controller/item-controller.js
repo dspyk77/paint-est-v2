@@ -6,7 +6,10 @@ export default class ItemController {
   static async index(req, res) {
     console.log('[ItemController#index]');
 
-    const items = await ItemRepository.findAll();
+    const params = req.query;
+    const roomId = params.roomId;
+
+    const items = await ItemRepository.findAll(roomId);
 
     const response = ItemMapper.toObjectCollection(items);
     console.log(`Response: ${JSON.stringify(response)}`);
