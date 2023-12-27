@@ -58,7 +58,7 @@ function Page() {
           <span> | </span>
           <Link href="" onClick={() => handleDeleteRoom(room.id)}>Delete</Link>
           <span> | </span>
-          <Link href="/items/new">Add Item</Link>
+          <Link href={`/rooms/${room.id}/new-item`}>Add Item</Link>
         </td>
       </tr>
     );
