@@ -26,7 +26,7 @@ function Page() {
     };
 
     fetchItems();
-  }, []);
+  }, [id]);
 
   const handleDeleteItem = async (id) => {
     const confirmation = window.confirm('Are you sure you want to delete this?');
@@ -74,7 +74,7 @@ function Page() {
     <>
       <h1 className="my-4 text-2xl">Items</h1>
 
-      <Button variant="primary" href="/items/new">Create</Button>
+      <Button variant="primary" href="/rooms">Back</Button>
 
       <Table responsive="md" variant='dark' striped hover className="mt-3">
         <thead>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Form, Button } from 'react-bootstrap';
+import CalculateSqft  from '@/frontend/components/sqft-calc';
 
 function Page() {
   const [itemName, setItemName] = useState('');
@@ -35,13 +36,39 @@ function Page() {
     setRoomId(id);
   }, [id]);
 
-  const sendCreateItemRequest = async () => {
+  const sendCreateItemAddRequest = async () => {
 
     const newItem = {
       itemName: itemName,
       itemWidth: itemWidth,
       itemHeight: itemHeight,
-      itemSqft: itemSqft,
+      itemSqft: CalculateSqft.addItemSqft(itemWidth, itemHeight),
+      roomId: roomId
+    };
+
+    const response = await fetch(`/api/items?roomId=${room.id}`, { //`/api/rooms/${room.id}/items`
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newItem)
+    });
+
+    if (response.ok) {
+      const createdItem = await response.json();
+      console.log(`Created item: ${JSON.stringify(createdItem)}`);
+
+      router.push(`/rooms/${id}/items`);
+    } else {
+      console.error(response);
+    }
+  };
+
+  const sendCreateItemSubRequest = async () => {
+
+    const newItem = {
+      itemName: itemName,
+      itemWidth: itemWidth,
+      itemHeight: itemHeight,
+      itemSqft: CalculateSqft.subtractItemSqft(itemWidth, itemHeight),
       roomId: roomId
     };
 
@@ -93,12 +120,31 @@ function Page() {
         />
       </Form.Group>
 
-      <Button className="mt-3 me-2" variant="primary" type="button" onClick={sendCreateItemRequest}>
+      <Button
+        className="mt-3 me-2"
+        variant="primary"
+        type="button"
+        onClick={sendCreateItemAddRequest}
+      >
         Add Sqft
       </Button>
 
-      <Button className="mt-3" variant="primary" type="button" onClick={sendCreateItemRequest}>
+      <Button
+        className="mt-3"
+        variant="primary"
+        type="button"
+        onClick={sendCreateItemSubRequest}
+      >
         Subtract Sqft
+      </Button>
+
+      <Button
+        className="mt-3"
+        variant="primary"
+        type="button"
+        href="/rooms"
+      >
+       Rooms
       </Button>
     </Form>
   );
