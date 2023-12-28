@@ -1,5 +1,5 @@
 import ItemRepository from '@/backend/repository/item-repository';
-import ItemMapper from '@/backend/mapper/item-mapper';
+import ItemMapper from '@/lib/mapper/item-mapper';
 
 export default class ItemController {
 

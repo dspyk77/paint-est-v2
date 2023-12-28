@@ -1,15 +1,15 @@
-import Item from '@/backend/model/item';
+import Item from '@/lib/model/item';
 
 export default class ItemMapper {
 
   static fromObject(object) {
     return new Item(
       object.id,
-      object.itemName,
-      object.itemWidth,
-      object.itemHeight,
-      object.itemSqft,
-      object.roomId);
+      object.name,
+      object.width,
+      object.height,
+      object.roomId,
+      object.isPaintable);
   }
 
   static fromObjectCollection(objectCollection) {
@@ -25,11 +25,11 @@ export default class ItemMapper {
   static toObject(item) {
     const object = {
       id: item.getId(),
-      itemName: item.getItemName(),
-      itemWidth: item.getItemWidth(),
-      itemHeight: item.getItemHeight(),
-      itemSqft: item.getItemSqft(),
-      roomId: item.getRoomId()
+      itemName: item.getName(),
+      itemWidth: item.getWidth(),
+      itemHeight: item.getHeight(),
+      roomId: item.getRoomId(),
+      isPaintable: item.getIsPaintable()
     };
 
     return object;

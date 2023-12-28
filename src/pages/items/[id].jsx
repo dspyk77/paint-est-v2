@@ -79,7 +79,7 @@ function Page() {
           </tr>
           <tr>
             <th>Item Sqft</th>
-            <td>{item.itemSqft}</td>
+            {/* <td>{item.itemSqft}</td> */}
           </tr>
         </tbody>
       </Table>

@@ -1,5 +1,5 @@
 import DbConnection from '@/backend/config/db-connection';
-import RoomMapper from '@/backend/mapper/room-mapper';
+import RoomMapper from '@/lib/mapper/room-mapper';
 
 export default class RoomRepository {
 

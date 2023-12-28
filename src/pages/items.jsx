@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
+import ItemMapper from '@/lib/mapper/item-mapper';
+import Item from '@/lib/model/item';
 
 function Page() {
   const [items, setItems] = useState([]);
@@ -13,7 +15,8 @@ function Page() {
       });
 
       if (response.ok) {
-        const items = await response.json();
+        const data = await response.json();
+        const items = ItemMapper.fromObjectCollection(data);
         console.log(`Items: ${JSON.stringify(items)}`);
         setItems(items);
       } else {
@@ -49,10 +52,10 @@ function Page() {
     const row = (
       <tr key={key}>
         <td>{item.id}</td>
-        <td>{item.itemName}</td>
-        <td>{item.itemWidth}</td>
-        <td>{item.itemHeight}</td>
-        <td>{item.itemSqft}</td>
+        <td>{item.name}</td>
+        <td>{item.width}</td>
+        <td>{item.height}</td>
+        <td>{item.getSqft()}</td>
         <td>
           <Link href={`/items/${item.id}`}>Show</Link>
           <span> | </span>

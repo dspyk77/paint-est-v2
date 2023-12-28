@@ -7,7 +7,6 @@ function Page() {
   const [itemWidth, setItemWidth] = useState('');
   const [itemHeight, setItemHeight] = useState('');
   const [roomId, setRoomId] = useState(null);
-  const [itemSqft, setItemSqft] = useState(0);
 
   const router = useRouter();
 
@@ -16,7 +15,6 @@ function Page() {
       itemName: itemName,
       itemWidth: itemWidth,
       itemHeight: itemHeight,
-      itemSqft: itemSqft,
       roomId: roomId
     };
 

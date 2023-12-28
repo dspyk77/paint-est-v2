@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 
 function Page() {
   const [rooms, setRooms] = useState([]);
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -22,6 +23,24 @@ function Page() {
     };
 
     fetchRooms();
+  }, []);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      const response = await fetch('/api/items', {
+        method: 'GET'
+      });
+
+      if (response.ok) {
+        const items = await response.json();
+        console.log(`Rooms: ${JSON.stringify(items)}`);
+        setItems(items);
+      } else {
+        console.error(response);
+      }
+    };
+
+    fetchItems();
   }, []);
 
   const handleDeleteRoom = async (id) => {
@@ -87,6 +106,33 @@ function Page() {
         </tbody>
       </Table>
     </>
+
+  // <>
+  //   <Button variant="primary" href="/rooms/new">Create</Button>
+
+  //   <h1 className="my-4 text-2xl">Master</h1>
+
+  //   <Table responsive="md" variant='dark' striped hover className="mt-3">
+  //     <thead>
+  //       <tr>
+  //         <th>Item</th>
+  //         <th>Width</th>
+  //         <th>Height</th>
+  //         <th>Sqft</th>
+  //       </tr>
+  //     </thead>
+
+  //     <tbody>
+  //       <tr>
+  //         <td>{items.itemName}</td>
+  //         <td>{items.itemWidth}</td>
+  //         <td>{items.itemHeight}</td>
+  //         <td>{items.itemSqft}</td>
+  //       </tr>
+  //     </tbody>
+  //   </Table>
+
+  // </>
   );
 }
 

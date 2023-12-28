@@ -1,3 +1,8 @@
+import Item from '@/lib/model/item';
+import Room from '@/lib/model/room';
+
+// const item = new Item(id, itemName, itemWidth, itemHeight, roomId);
+
 export default class CalculateSqft {
   static addItemSqft(itemWidth, itemHeight){
     let itemSqft = itemWidth * itemHeight;
@@ -21,10 +26,12 @@ export default class CalculateSqft {
   //   return itemSqft;
   // }
 
-  static roomSqft(items) {
+  static roomSqft(items, rooms) {
     let roomSqft = 0;
-    for (i = 1; i <= items.length; i++){
-      roomSqft += items[i].itemSqft;
+    if (items.roomId == rooms.id) {
+      for (let i = 0; i < items.length; i++) {
+        roomSqft += items[i].itemSqft;
+      }
     }
     return roomSqft;
   }

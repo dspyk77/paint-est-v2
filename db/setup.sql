@@ -16,10 +16,10 @@ DROP TABLE IF EXISTS items;
 
 CREATE TABLE items (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  itemName VARCHAR(255),
-  itemWidth INT,
-  itemHeight INT,
-  itemSqft INT,
+  name VARCHAR(255),
+  width INT,
+  height INT,
   roomId INT,
+  isPaintable INT,
   FOREIGN KEY (roomId) REFERENCES rooms(id) ON DELETE CASCADE ON UPDATE CASCADE
 );

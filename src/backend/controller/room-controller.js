@@ -1,5 +1,5 @@
 import RoomRepository from '@/backend/repository/room-repository';
-import RoomMapper from '@/backend/mapper/room-mapper';
+import RoomMapper from '@/lib/mapper/room-mapper';
 
 export default class RoomController {
 

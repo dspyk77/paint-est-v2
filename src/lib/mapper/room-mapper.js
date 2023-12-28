@@ -1,4 +1,4 @@
-import Room from '@/backend/model/room';
+import Room from '@/lib/model/room';
 
 export default class RoomMapper {
 

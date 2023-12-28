@@ -8,7 +8,6 @@ function Page() {
   const [itemWidth, setItemWidth] = useState('');
   const [itemHeight, setItemHeight] = useState('');
   const [roomId, setRoomId] = useState('');
-  const [itemSqft, setItemSqft] = useState(0);
   const [room, setRoom] = useState({});
 
   const router = useRouter();
@@ -42,7 +41,7 @@ function Page() {
       itemName: itemName,
       itemWidth: itemWidth,
       itemHeight: itemHeight,
-      itemSqft: CalculateSqft.addItemSqft(itemWidth, itemHeight),
+      // itemSqft: CalculateSqft.addItemSqft(itemWidth, itemHeight),
       roomId: roomId
     };
 
@@ -68,7 +67,7 @@ function Page() {
       itemName: itemName,
       itemWidth: itemWidth,
       itemHeight: itemHeight,
-      itemSqft: CalculateSqft.subtractItemSqft(itemWidth, itemHeight),
+      // itemSqft: CalculateSqft.subtractItemSqft(itemWidth, itemHeight),
       roomId: roomId
     };
 
@@ -138,14 +137,6 @@ function Page() {
         Subtract Sqft
       </Button>
 
-      <Button
-        className="mt-3"
-        variant="primary"
-        type="button"
-        href="/rooms"
-      >
-       Rooms
-      </Button>
     </Form>
   );
 };

@@ -7,7 +7,6 @@ function Page() {
   const [itemWidth, setItemWidth] = useState('');
   const [itemHeight, setItemHeight] = useState('');
   const [roomId, setRoomId] = useState();
-  const [itemSqft, setItemSqft] = useState(0);
 
   const router = useRouter();
   const { id } = router.query;
@@ -26,7 +25,6 @@ function Page() {
         setItemName(itemData.itemName);
         setItemWidth(itemData.itemWidth);
         setItemHeight(itemData.itemHeight);
-        setItemSqft(itemData.itemSqft);
         setRoomId(itemData.roomId);
       } else {
         console.error(response);
@@ -41,7 +39,6 @@ function Page() {
       itemName: itemName,
       itemWidth: itemWidth,
       itemHeight: itemHeight,
-      itemSqft: itemSqft,
       roomId: roomId
     };
 

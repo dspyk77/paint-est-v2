@@ -1,5 +1,5 @@
 import DbConnection from '@/backend/config/db-connection';
-import ItemMapper from '@/backend/mapper/item-mapper';
+import ItemMapper from '@/lib/mapper/item-mapper';
 
 export default class ItemRepository {
 
@@ -70,16 +70,16 @@ export default class ItemRepository {
     const dbConnection = await DbConnection.getConnection();
 
     const sql = `
-      INSERT INTO items (itemName, itemWidth, itemHeight, itemSqft, roomId)
-      VALUES (?, ?, ?, ?, ?)
+      INSERT INTO items (name, width, height, roomId, isPaintable)
+      VALUES (?, ?, ?, ?)
     `;
 
     const values = [
-      item.getItemName(),
-      item.getItemWidth(),
-      item.getItemHeight(),
-      item.getItemSqft(),
-      item.getRoomId()
+      item.getName(),
+      item.getWidth(),
+      item.getHeight(),
+      item.getRoomId(),
+      item.getIsPaintable()
     ];
 
     await dbConnection.execute(sql, values);
@@ -94,7 +94,6 @@ export default class ItemRepository {
       SET itemName = ?,
           itemWidth = ?,
           itemHeight = ?,
-          itemSqft = ?,
           roomId= ?
       WHERE id = ?
     `;
@@ -103,7 +102,6 @@ export default class ItemRepository {
       item.getItemName(),
       item.getItemWidth(),
       item.getItemHeight(),
-      item.getItemSqft(),
       item.getRoomId(),
       item.getId()
     ];

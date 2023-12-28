@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Form, Button } from 'react-bootstrap';
 import CalculateSqft from '@/frontend/components/sqft-calc';
@@ -8,27 +8,8 @@ function Page() {
   const [roomSqft, setRoomSqft] = useState(0);
 
   const router = useRouter();
-  const { id } = router.query;
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      const response = await fetch(`/api/items?roomId=${id}`, {
-        method: 'GET'
-      });
-
-      if (response.ok) {
-        const items = await response.json();
-        console.log(`Items: ${JSON.stringify(items)}`);
-        setItems(items);
-      } else {
-        console.error(response);
-      }
-    };
-
-    fetchItems();
-  }, [id]);
-
-  const sendCreateRoomRequest = async () => {
+  const sendCreateRoomRequest = async (id) => {
     const newRoom = {
       roomName: roomName,
       roomSqft: roomSqft
