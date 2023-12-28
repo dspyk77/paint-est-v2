@@ -53,10 +53,10 @@ function Page() {
     const row = (
       <tr key={key}>
         <td>{item.id}</td>
-        <td>{item.itemName}</td>
-        <td>{item.itemWidth}</td>
-        <td>{item.itemHeight}</td>
-        {/* <td>{item.itemSqft}</td> */}
+        <td>{item.name}</td>
+        <td>{item.width}</td>
+        <td>{item.height}</td>
+        <td>{item.getSqft()}</td>
         <td>
           <Link href={`/items/${item.id}`}>Show</Link>
           <span> | </span>
@@ -81,9 +81,9 @@ function Page() {
           <tr>
             <th>ID</th>
             <th>Item Name</th>
-            <th>Item Width</th>
-            <th>Item Height</th>
-            <th>Item Sqft</th>
+            <th>Width</th>
+            <th>Height</th>
+            <th>Sqft</th>
             <th></th>
           </tr>
         </thead>

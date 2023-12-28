@@ -67,15 +67,15 @@ function Page() {
         <tbody>
           <tr>
             <th>Item Name</th>
-            <td>{item.itemName}</td>
+            <td>{item.name}</td>
           </tr>
           <tr>
             <th>Item Width</th>
-            <td>{item.itemWidth}</td>
+            <td>{item.width}</td>
           </tr>
           <tr>
             <th>Item Height</th>
-            <td>{item.itemHeight}</td>
+            <td>{item.height}</td>
           </tr>
           <tr>
             <th>Item Sqft</th>

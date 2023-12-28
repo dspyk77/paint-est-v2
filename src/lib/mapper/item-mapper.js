@@ -25,9 +25,9 @@ export default class ItemMapper {
   static toObject(item) {
     const object = {
       id: item.getId(),
-      itemName: item.getName(),
-      itemWidth: item.getWidth(),
-      itemHeight: item.getHeight(),
+      name: item.getName(),
+      width: item.getWidth(),
+      height: item.getHeight(),
       roomId: item.getRoomId(),
       isPaintable: item.getIsPaintable()
     };

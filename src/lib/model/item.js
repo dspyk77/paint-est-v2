@@ -83,6 +83,7 @@ export default class Item {
       `name=${this.#name}, ` +
       `height=${this.#height}, ` +
       `width=${this.#width}, ` +
-      `roomId=${this.#roomId},`;
+      `roomId=${this.#roomId},` +
+      `isPaintable=${this.#isPaintable}, `;
   }
 }

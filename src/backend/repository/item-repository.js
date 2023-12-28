@@ -71,7 +71,7 @@ export default class ItemRepository {
 
     const sql = `
       INSERT INTO items (name, width, height, roomId, isPaintable)
-      VALUES (?, ?, ?, ?)
+      VALUES (?, ?, ?, ?, ?)
     `;
 
     const values = [
@@ -91,17 +91,18 @@ export default class ItemRepository {
 
     const sql = `
       UPDATE items
-      SET itemName = ?,
-          itemWidth = ?,
-          itemHeight = ?,
-          roomId= ?
+      SET name = ?,
+          width = ?,
+          height = ?,
+          roomId= ?,
+          isPaintable= ?
       WHERE id = ?
     `;
 
     const values = [
-      item.getItemName(),
-      item.getItemWidth(),
-      item.getItemHeight(),
+      item.getName(),
+      item.getWidth(),
+      item.getHeight(),
       item.getRoomId(),
       item.getId()
     ];
