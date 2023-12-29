@@ -4,11 +4,12 @@ import { Form, Button } from 'react-bootstrap';
 import CalculateSqft  from '@/frontend/components/sqft-calc';
 
 function Page() {
-  const [itemName, setItemName] = useState('');
-  const [itemWidth, setItemWidth] = useState('');
-  const [itemHeight, setItemHeight] = useState('');
+  const [name, setName] = useState('');
+  const [width, setWidth] = useState('');
+  const [height, setHeight] = useState('');
   const [roomId, setRoomId] = useState('');
   const [room, setRoom] = useState({});
+  const [isPaintable, setIsPaintable] = useState('');
 
   const router = useRouter();
   const { id } = router.query;
@@ -38,11 +39,11 @@ function Page() {
   const sendCreateItemAddRequest = async () => {
 
     const newItem = {
-      itemName: itemName,
-      itemWidth: itemWidth,
-      itemHeight: itemHeight,
-      // itemSqft: CalculateSqft.addItemSqft(itemWidth, itemHeight),
-      roomId: roomId
+      name: name,
+      width: width,
+      height: height,
+      roomId: roomId,
+      isPaintable: true
     };
 
     const response = await fetch(`/api/items?roomId=${room.id}`, { //`/api/rooms/${room.id}/items`
@@ -64,11 +65,11 @@ function Page() {
   const sendCreateItemSubRequest = async () => {
 
     const newItem = {
-      itemName: itemName,
-      itemWidth: itemWidth,
-      itemHeight: itemHeight,
-      // itemSqft: CalculateSqft.subtractItemSqft(itemWidth, itemHeight),
-      roomId: roomId
+      name: name,
+      width: width,
+      height: height,
+      roomId: roomId,
+      isPaintable: false
     };
 
     const response = await fetch(`/api/items?roomId=${room.id}`, { //`/api/rooms/${room.id}/items`
@@ -89,33 +90,33 @@ function Page() {
 
   return (
     <Form className="mt-3">
-      <Form.Group controlId="item-name">
+      <Form.Group controlId="name">
         <Form.Label>Item Name</Form.Label>
 
         <Form.Control
           type="text"
-          value={itemName}
-          onChange={(e) => setItemName(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Group controlId="item-width">
-        <Form.Label>Item Width</Form.Label>
+      <Form.Group controlId="width">
+        <Form.Label>Width</Form.Label>
 
         <Form.Control
           type="text"
-          value={itemWidth}
-          onChange={(e) => setItemWidth(e.target.value)}
+          value={width}
+          onChange={(e) => setWidth(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Group controlId="item-height">
-        <Form.Label>Item Height</Form.Label>
+      <Form.Group controlId="height">
+        <Form.Label>Height</Form.Label>
 
         <Form.Control
           type="text"
-          value={itemHeight}
-          onChange={(e) => setItemHeight(e.target.value)}
+          value={height}
+          onChange={(e) => setHeight(e.target.value)}
         />
       </Form.Group>
 

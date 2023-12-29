@@ -3,16 +3,18 @@ import Item from '@/lib/model/item';
 export default class ItemMapper {
 
   static fromObject(object) {
+    console.log(`[ItemMapper#fromObject-isPaintable] ${object.isPaintable}`);
     return new Item(
       object.id,
       object.name,
       object.width,
       object.height,
-      object.roomId,
-      object.isPaintable);
+      object.isPaintable,
+      object.roomId);
   }
 
   static fromObjectCollection(objectCollection) {
+    console.log(`[ItemMapper#fromObjectCollectionBefore] ${object.isPaintable}`);
     const results = [];
 
     for (let object of objectCollection) {
@@ -28,8 +30,8 @@ export default class ItemMapper {
       name: item.getName(),
       width: item.getWidth(),
       height: item.getHeight(),
-      roomId: item.getRoomId(),
-      isPaintable: item.getIsPaintable()
+      isPaintable: item.getIsPaintable(),
+      roomId: item.getRoomId()
     };
 
     return object;

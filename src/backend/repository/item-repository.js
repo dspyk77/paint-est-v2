@@ -74,6 +74,7 @@ export default class ItemRepository {
       VALUES (?, ?, ?, ?, ?)
     `;
 
+    console.log(item.getIsPaintable());
     const values = [
       item.getName(),
       item.getWidth(),
@@ -104,6 +105,7 @@ export default class ItemRepository {
       item.getWidth(),
       item.getHeight(),
       item.getRoomId(),
+      item.getIsPaintable(),
       item.getId()
     ];
 
