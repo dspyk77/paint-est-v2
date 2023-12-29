@@ -7,7 +7,7 @@ export default class Item {
   #roomId;
   #isPaintable;
 
-  constructor(id, name, width, height, sqft, roomId, isPaintable) {
+  constructor(id, name, width, height, roomId, isPaintable) {
     this.#id = id;
     this.#name = name;
     this.#height = height;
