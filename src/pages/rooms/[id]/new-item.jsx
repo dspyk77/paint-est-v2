@@ -49,7 +49,8 @@ function Page() {
       isPaintable: isPaintable
     };
 
-    const response = await fetch(`/api/items?roomId=${room.id}`, { //`/api/rooms/${room.id}/items`
+    //`/api/rooms/${room.id}/items` for GET --> /api/items?roomId=${room.id}
+    const response = await fetch('/api/items', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newItem)
