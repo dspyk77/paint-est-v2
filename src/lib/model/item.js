@@ -34,7 +34,7 @@ export default class Item {
 
   getSqft() {
     const sqft = this.#height * this.#width;
-    if (!this.isPaintable) {
+    if (!this.#isPaintable) {
       return -sqft;
     } else {
       return sqft;

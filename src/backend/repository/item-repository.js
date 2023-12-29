@@ -74,7 +74,8 @@ export default class ItemRepository {
       VALUES (?, ?, ?, ?, ?)
     `;
 
-    console.log(item.getIsPaintable());
+    console.log('[ItemRepository#create] isPaintable:', item.getIsPaintable());
+
     const values = [
       item.getName(),
       item.getWidth(),
@@ -82,6 +83,8 @@ export default class ItemRepository {
       item.getRoomId(),
       item.getIsPaintable()
     ];
+
+    console.log('[ItemRepository#create] values:', values);
 
     await dbConnection.execute(sql, values);
   }

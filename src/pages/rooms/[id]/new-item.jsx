@@ -37,13 +37,16 @@ function Page() {
   }, [id]);
 
   const sendCreateItemAddRequest = async () => {
+    setIsPaintable(true);
+
+    console.log('isPaintable:', isPaintable);
 
     const newItem = {
       name: name,
       width: width,
       height: height,
       roomId: roomId,
-      isPaintable: true
+      isPaintable: isPaintable
     };
 
     const response = await fetch(`/api/items?roomId=${room.id}`, { //`/api/rooms/${room.id}/items`
@@ -60,6 +63,7 @@ function Page() {
     } else {
       console.error(response);
     }
+    console.log('isPaintable:', isPaintable);
   };
 
   const sendCreateItemSubRequest = async () => {

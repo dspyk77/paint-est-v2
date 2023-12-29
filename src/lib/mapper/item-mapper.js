@@ -4,6 +4,7 @@ export default class ItemMapper {
 
   static fromObject(object) {
     console.log(`[ItemMapper#fromObject-isPaintable] ${object.isPaintable}`);
+    console.log('[ItemMapper#fromObject] Item Data:', object);
     return new Item(
       object.id,
       object.name,
