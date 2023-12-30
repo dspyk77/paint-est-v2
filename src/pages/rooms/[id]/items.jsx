@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/Table';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
 import { useRouter } from 'next/router';
+import Item from '@/lib/model/item';
 
 function Page() {
   const [items, setItems] = useState([]);
@@ -56,7 +57,7 @@ function Page() {
         <td>{item.name}</td>
         <td>{item.width}</td>
         <td>{item.height}</td>
-        <td>{item.getSqft()}</td>
+        <td>{Item.getSqft()}</td>
         <td>
           <Link href={`/items/${item.id}`}>Show</Link>
           <span> | </span>

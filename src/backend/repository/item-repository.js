@@ -70,7 +70,7 @@ export default class ItemRepository {
     const dbConnection = await DbConnection.getConnection();
 
     const sql = `
-      INSERT INTO items (name, width, height, roomId, isPaintable)
+      INSERT INTO items (name, width, height, isPaintable, roomId)
       VALUES (?, ?, ?, ?, ?)
     `;
 
@@ -80,8 +80,8 @@ export default class ItemRepository {
       item.getName(),
       item.getWidth(),
       item.getHeight(),
-      item.getRoomId(),
-      item.getIsPaintable()
+      item.getIsPaintable(),
+      item.getRoomId()
     ];
 
     console.log('[ItemRepository#create] values:', values);
@@ -98,8 +98,8 @@ export default class ItemRepository {
       SET name = ?,
           width = ?,
           height = ?,
-          roomId= ?,
-          isPaintable= ?
+          isPaintable= ?,
+          roomId= ?
       WHERE id = ?
     `;
 
@@ -107,8 +107,8 @@ export default class ItemRepository {
       item.getName(),
       item.getWidth(),
       item.getHeight(),
-      item.getRoomId(),
       item.getIsPaintable(),
+      item.getRoomId(),
       item.getId()
     ];
 

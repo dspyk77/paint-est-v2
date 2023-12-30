@@ -68,16 +68,17 @@ function Page() {
   };
 
   const sendCreateItemSubRequest = async () => {
+    setIsPaintable(false);
 
     const newItem = {
       name: name,
       width: width,
       height: height,
       roomId: roomId,
-      isPaintable: false
+      isPaintable: isPaintable
     };
 
-    const response = await fetch(`/api/items?roomId=${room.id}`, { //`/api/rooms/${room.id}/items`
+    const response = await fetch('/api/items', { //`/api/rooms/${room.id}/items`
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newItem)

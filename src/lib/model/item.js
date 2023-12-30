@@ -4,16 +4,16 @@ export default class Item {
   #name;
   #width;
   #height;
-  #roomId;
   #isPaintable;
+  #roomId;
 
-  constructor(id, name, width, height, roomId, isPaintable) {
+  constructor(id, name, width, height, isPaintable, roomId) {
     this.#id = id;
     this.#name = name;
-    this.#height = height;
     this.#width = width;
-    this.#roomId = roomId;
+    this.#height = height;
     this.#isPaintable = isPaintable;
+    this.#roomId = roomId;
   }
 
   getId() {

@@ -11,11 +11,11 @@ export default class ItemMapper {
       object.width,
       object.height,
       object.isPaintable,
-      object.roomId);
+      object.roomId
+    );
   }
 
   static fromObjectCollection(objectCollection) {
-    console.log(`[ItemMapper#fromObjectCollectionBefore] ${object.isPaintable}`);
     const results = [];
 
     for (let object of objectCollection) {
