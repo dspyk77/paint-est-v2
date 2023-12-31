@@ -18,8 +18,23 @@ function Page() {
       });
 
       if (response.ok) {
-        const items = await response.json();
-        console.log(`Items: ${JSON.stringify(items)}`);
+        // const items = await response.json();
+        // console.log(`Items: ${JSON.stringify(items)}`);
+        // setItems(items);
+
+        const itemsData = await response.json();
+        const items = itemsData.map(itemData => {
+          return new Item(
+            itemData.id,
+            itemData.name,
+            itemData.width,
+            itemData.height,
+            itemData.isPaintable,
+            itemData.roomId
+          );
+        });
+
+        console.log(items);
         setItems(items);
       } else {
         console.error(response);
@@ -47,23 +62,47 @@ function Page() {
     }
   };
 
+  // const rows = [];
+  // for (let item of items) {
+  //   const key = `${item.id}`;
+
+  //   const row = (
+  //     <tr key={key}>
+  //       <td>{item.id}</td>
+  //       <td>{item.name}</td>
+  //       <td>{item.width}</td>
+  //       <td>{item.height}</td>
+  //       <td>{item.getSqft()}</td>
+  //       <td>
+  //         <Link href={`/items/${item.id}`}>Show</Link>
+  //         <span> | </span>
+  //         <Link href={`/items/${item.id}/edit`}>Edit</Link>
+  //         <span> | </span>
+  //         <Link href="" onClick={() => handleDeleteItem(item.id)}>Delete</Link>
+  //       </td>
+  //     </tr>
+  //   );
+
+  //   rows.push(row);
+  // }
+
   const rows = [];
   for (let item of items) {
-    const key = `${item.id}`;
+    const key = `${item.getId()}`;
 
     const row = (
       <tr key={key}>
-        <td>{item.id}</td>
-        <td>{item.name}</td>
-        <td>{item.width}</td>
-        <td>{item.height}</td>
-        {/* <td>{Item.getSqft}</td> */}
+        <td>{item.getId()}</td>
+        <td>{item.getName()}</td>
+        <td>{item.getWidth()}</td>
+        <td>{item.getHeight()}</td>
+        <td>{item.getSqft()}</td>
         <td>
-          <Link href={`/items/${item.id}`}>Show</Link>
+          <Link href={`/items/${item.getId()}`}>Show</Link>
           <span> | </span>
-          <Link href={`/items/${item.id}/edit`}>Edit</Link>
+          <Link href={`/items/${item.getId()}/edit`}>Edit</Link>
           <span> | </span>
-          <Link href="" onClick={() => handleDeleteItem(item.id)}>Delete</Link>
+          <Link href="" onClick={() => handleDeleteItem(item.getId())}>Delete</Link>
         </td>
       </tr>
     );

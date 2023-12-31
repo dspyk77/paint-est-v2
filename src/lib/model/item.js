@@ -32,6 +32,14 @@ export default class Item {
     return this.#width;
   }
 
+  getRoomId() {
+    return this.#roomId;
+  }
+
+  getIsPaintable() {
+    return this.#isPaintable;
+  }
+
   getSqft() {
     const sqft = this.#height * this.#width;
     if (!this.#isPaintable) {
@@ -41,40 +49,32 @@ export default class Item {
     }
   }
 
-  getRoomId() {
-    return this.#roomId;
-  }
-
-  getIsPaintable() {
-    return this.#isPaintable;
-  }
-
   setId(id) {
     this.#id = id;
   }
 
-  setName() {
-    return this.#name;
+  setName(name) {
+    this.#name = name;
   }
 
-  setHeight() {
-    return this.#height;
+  setHeight(height) {
+    this.#height = height;
   }
 
-  setWidth() {
-    return this.#width;
+  setWidth(width) {
+    this.#width = width;
   }
 
   // setSqft() {
   //   return this.#sqft;
   // }
 
-  setRoomId() {
-    return this.#roomId;
+  setRoomId(roomId) {
+    this.#roomId = roomId;
   }
 
-  setIsPaintable() {
-    return this.#isPaintable;
+  setIsPaintable(isPaintable) {
+    this.#isPaintable = isPaintable;
   }
 
   toString() {
