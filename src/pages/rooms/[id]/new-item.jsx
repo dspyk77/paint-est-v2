@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Form, Button } from 'react-bootstrap';
-import CalculateSqft  from '@/frontend/components/sqft-calc';
 
 function Page() {
   const [name, setName] = useState('');
@@ -9,7 +8,7 @@ function Page() {
   const [height, setHeight] = useState('');
   const [roomId, setRoomId] = useState('');
   const [room, setRoom] = useState({});
-  const [isPaintable, setIsPaintable] = useState('');
+  const [isPaintable, setIsPaintable] = useState(false);
 
   const router = useRouter();
   const { id } = router.query;
@@ -36,8 +35,7 @@ function Page() {
     setRoomId(id);
   }, [id]);
 
-  const sendCreateItemAddRequest = async () => {
-    setIsPaintable(true);
+  const sendCreateItemRequest = async () => {
 
     console.log('isPaintable:', isPaintable);
 
@@ -65,33 +63,6 @@ function Page() {
       console.error(response);
     }
     console.log('isPaintable:', isPaintable);
-  };
-
-  const sendCreateItemSubRequest = async () => {
-    setIsPaintable(false);
-
-    const newItem = {
-      name: name,
-      width: width,
-      height: height,
-      roomId: roomId,
-      isPaintable: isPaintable
-    };
-
-    const response = await fetch('/api/items', { //`/api/rooms/${room.id}/items`
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newItem)
-    });
-
-    if (response.ok) {
-      const createdItem = await response.json();
-      console.log(`Created item: ${JSON.stringify(createdItem)}`);
-
-      router.push(`/rooms/${id}/items`);
-    } else {
-      console.error(response);
-    }
   };
 
   return (
@@ -126,22 +97,22 @@ function Page() {
         />
       </Form.Group>
 
+      <Form.Check
+        className="mt-3"
+        type="switch"
+        id="paintable-switch"
+        label="This item will be painted"
+        checked={isPaintable}
+        onChange={(e) => setIsPaintable(e.target.checked)}
+      />
+
       <Button
         className="mt-3 me-2"
         variant="primary"
         type="button"
-        onClick={sendCreateItemAddRequest}
+        onClick={sendCreateItemRequest}
       >
-        Add Sqft
-      </Button>
-
-      <Button
-        className="mt-3"
-        variant="primary"
-        type="button"
-        onClick={sendCreateItemSubRequest}
-      >
-        Subtract Sqft
+        Create
       </Button>
 
     </Form>

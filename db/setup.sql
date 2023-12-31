@@ -20,6 +20,6 @@ CREATE TABLE items (
   width INT,
   height INT,
   isPaintable BOOLEAN,
-  roomId INT
+  roomId INT,
   FOREIGN KEY (roomId) REFERENCES rooms(id) ON DELETE CASCADE ON UPDATE CASCADE
 );

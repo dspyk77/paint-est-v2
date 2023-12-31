@@ -57,7 +57,7 @@ function Page() {
         <td>{item.name}</td>
         <td>{item.width}</td>
         <td>{item.height}</td>
-        <td>{Item.getSqft()}</td>
+        {/* <td>{Item.getSqft}</td> */}
         <td>
           <Link href={`/items/${item.id}`}>Show</Link>
           <span> | </span>
