@@ -1,43 +1,54 @@
+import Item from '@/lib/model/item';
+
 export default class Room {
 
   #id;
-  #roomName;
-  #roomSqft;
+  #name;
+  #items = [];
 
   constructor(id, roomName, roomSqft) {
     this.#id = id;
-    this.#roomName = roomName;
-    this.#roomSqft = roomSqft;
+    this.#name = name;
   }
 
   getId() {
     return this.#id;
   }
 
-  getRoomName() {
-    return this.#roomName;
+  getName() {
+    return this.#name;
   }
 
-  getRoomSqft() {
-    return this.#roomSqft;
+  getNetPaintableSqft() {
+    let netSqft = 0;
+
+    for (const item of this.#items) {
+      netSqft += item.getSqft();
+    }
+
+    return netSqft;
+  }
+
+  addItem(item) {
+    this.#items.push(item);
   }
 
   setId(id) {
     this.#id = id;
   }
 
-  setRoomName() {
-    return this.#roomName;
+  setRoomName(name) {
+    this.#name = name;
   }
 
-  setRoomSqft() {
-    return this.#roomSqft;
+  setItems(items) {
+    this.#items = items;
   }
 
   toString() {
     return 'Room: ' +
       `id=${this.#id}, ` +
-      `roomName=${this.#roomName}, ` +
-      `roomSqft=${this.#roomSqft}, `;
+      `roomName=${this.#name}, ` +
+      `items=${JSON.stringify(this.#items)}, `;
   }
 }

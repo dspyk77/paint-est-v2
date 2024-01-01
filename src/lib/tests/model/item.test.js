@@ -3,7 +3,7 @@ import Item from '@/lib/model/item';
 describe('constructor', () => {
 
   test('given proper parameters, then constructs successfully', () => {
-    const item = new Item(1, 'TEST', 12, 10, 5, true);
+    const item = new Item(1, 'TEST', 12, 10, true, 5);
 
     expect(item.getId()).toBe(1);
     expect(item.getName()).toBe('TEST');
