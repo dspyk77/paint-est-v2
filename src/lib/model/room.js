@@ -6,7 +6,7 @@ export default class Room {
   #name;
   #items = [];
 
-  constructor(id, roomName, roomSqft) {
+  constructor(id, name) {
     this.#id = id;
     this.#name = name;
   }
