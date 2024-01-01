@@ -15,7 +15,7 @@ describe('fromObject', () => {
 
     const actual = ItemMapper.fromObject(data);
 
-    const expected = new Item(1, 'TEST', 12, 10, null, 5, true);
+    const expected = new Item(1, 'TEST', 12, 10, true, 5);
 
     expect(actual).toStrictEqual(expected);
   });
