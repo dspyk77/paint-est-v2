@@ -5,8 +5,7 @@ export default class RoomMapper {
   static fromObject(object) {
     return new Room(
       object.id,
-      object.roomName,
-      object.roomSqft);
+      object.name);
   }
 
   static fromObjectCollection(objectCollection) {
@@ -22,8 +21,7 @@ export default class RoomMapper {
   static toObject(room) {
     const object = {
       id: room.getId(),
-      roomName: room.getRoomName(),
-      roomSqft: room.getRoomSqft()
+      roomName: room.getName()
     };
 
     return object;

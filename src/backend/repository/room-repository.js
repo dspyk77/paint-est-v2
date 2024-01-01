@@ -41,13 +41,12 @@ export default class RoomRepository {
     const dbConnection = await DbConnection.getConnection();
 
     const sql = `
-      INSERT INTO rooms (roomName, roomSqft)
-      VALUES (?, ?)
+      INSERT INTO rooms (name)
+      VALUES (?)
     `;
 
     const values = [
-      room.getRoomName(),
-      room.getRoomSqft()
+      room.getName()
     ];
 
     await dbConnection.execute(sql, values);
@@ -59,14 +58,12 @@ export default class RoomRepository {
 
     const sql = `
       UPDATE rooms
-      SET roomName = ?,
-          roomSqft = ?
+      SET roomName = ?
       WHERE id = ?
     `;
 
     const values = [
-      room.getRoomName(),
-      room.getRoomSqft(),
+      room.getName(),
       room.getId()
     ];
 

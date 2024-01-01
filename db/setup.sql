@@ -8,8 +8,7 @@ DROP TABLE IF EXISTS rooms;
 
 CREATE TABLE rooms (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  roomName VARCHAR(255),
-  roomSqft INT
+  name VARCHAR(255)
 );
 
 DROP TABLE IF EXISTS items;
