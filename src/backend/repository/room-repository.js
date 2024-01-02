@@ -14,9 +14,9 @@ export default class RoomRepository {
 
     const roomData = results[0];
 
-    const rooms = RoomMapper.fromObjectCollection(roomData);
+    // const rooms = RoomMapper.fromObjectCollection(roomData);
 
-    return rooms;
+    return roomData;
   }
 
   static async findById(id) {
@@ -31,9 +31,9 @@ export default class RoomRepository {
 
     const roomData = results[0][0];
 
-    const room = RoomMapper.fromObject(roomData);
+    // const room = RoomMapper.fromObject(roomData);
 
-    return room;
+    return roomData;
   }
 
   static async create(room) {

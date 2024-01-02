@@ -26,9 +26,9 @@ export default class ItemRepository {
 
     const itemData = results[0];
 
-    const items = ItemMapper.fromObjectCollection(itemData);
+    // const items = ItemMapper.fromObjectCollection(itemData);
 
-    return items;
+    return itemData;
   }
 
   static async findAllByRoomId(roomId) {
@@ -43,9 +43,9 @@ export default class ItemRepository {
 
     const itemData = results[0];
 
-    const items = ItemMapper.fromObjectCollection(itemData);
+    // const items = ItemMapper.fromObjectCollection(itemData);
 
-    return items;
+    return itemData;
   }
 
   static async findById(id) {
@@ -60,9 +60,9 @@ export default class ItemRepository {
 
     const itemData = results[0][0];
 
-    const item = ItemMapper.fromObject(itemData);
+    // const item = ItemMapper.fromObject(itemData);
 
-    return item;
+    return itemData;
   }
 
   static async create(item) {
